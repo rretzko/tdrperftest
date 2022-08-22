@@ -1,0 +1,148 @@
+/**
+@author: Fredric Retzko
+@email: rick@mfrholdings.com
+@orig: 22-February-2021
+ */
+
+/**
+COLOR PALETTE
+- active links on dark background #2E9CCA (blue-ish)
+ */
+
+:root {
+    --link_active: #2E9CCA;
+    --link_inactive: #FFF;
+    --tdrBlue: rgba(40, 110, 156, 1);
+}
+
+html,body{
+    height: 101%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--tdrBlue);
+}
+
+a{
+    color: white;
+}
+
+a:hover{
+    background-color: rgba(255,255,255,.2);
+}
+
+.content{
+    flex:1 0 auto;
+}
+
+.active{
+    color: yellow;
+    border: 1px solid white;
+}
+
+.footer{
+    flex-shrink: 0;
+}
+
+#guest-nav{
+    display: flex;
+    flex-direction: row;
+    font-size: .66rem;
+    justify-content: space-between;
+    left: 0;
+    padding: 0 1rem;
+    position: absolute;
+    top: 40px;
+    width: 100vw;
+}
+
+    #guest-modules{
+
+    }
+
+    #login-register{
+        margin-left: 2rem;
+    }
+
+main
+{
+    min-height: 80vh;
+}
+
+nav{
+
+}
+
+#site-footer{
+    color: white;
+    display: flex;
+    font-size: .66rem;
+    justify-content: space-between;
+    margin: auto;
+    padding: 1rem .5rem;
+    width: 96%;
+}
+
+#site-header
+{
+    display: flex;
+}
+
+    #site-header h1
+    {
+        width: 100vw;
+        padding-top: 1rem;
+        text-align: center;
+        color: yellow;
+        font-size: 1rem;
+    }
+
+    #site-header h1 a
+    {
+        color: yellow;
+    }
+
+    #site-header #logo
+    {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+    }
+
+    #site-header #logo img{
+        height: 25px;
+        width: 25px;
+    }
+
+@media (min-width:640px) {
+    #site-header h1 {
+        font-size: 2rem;
+        top: 1rem;
+    }
+
+    #site-header #logo img {
+        height: 80px;
+        width: 80px;
+    }
+
+    #guest-nav{
+        font-size: 1rem;
+        padding: 0 2rem;
+        top: 60px;
+    }
+
+    #welcome-footer{
+        margin: auto;
+        width: 80%;
+    }
+}
+
+@media (min-width:1024px)
+{
+    body{background-position-y: 0;}
+
+    #guest-nav{padding-right: 4rem;}
+}
+
