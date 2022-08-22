@@ -144,9 +144,9 @@
                                     :scoringcomponents="$scoringcomponents"
                                 />
                                 <div class="mt-2 text-center">
-                                    <!--
+
                                     <input class="bg-black text-white rounded px-2" type="submit" name="submit" id="submit" value="Submit" />
-                                    -->
+
                                 </div>
                                     <div style="color: darkred; font-size: 0.8rem;">
                                         NOTE: This page will auto-advance to the next registrant on the roster.

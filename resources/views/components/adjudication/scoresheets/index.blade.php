@@ -20,7 +20,7 @@
                 <div class="flex flex-col">
                     <label class="box" for="" title="{{ $scoringcomponent->descr }}">{{ $scoringcomponent->abbr }}</label>
                     <select class="box" id="box{{ $scoringcomponent->order_by }}" name="scoringcomponents[{{$scoringcomponent->id}}]" onchange="recalcScore({{$eventversion->id}})">
-                        @if($scoringcomponent->bestscore < $scoringcomponent->worstscore)
+                        @if($scoringcomponent->bestscore < $scoringcomponent->worstscore) {{-- golf, low score wins, 1-9 scoring; best-to-worst --}}
                             @for($i=$scoringcomponent->bestscore; $i<=$scoringcomponent->worstscore; $i=$i+$scoringcomponent->interval)
                                 <option value="{{ $i }}"
                                     @if($auditioner->scoringcomponentScore($useradjudicator, $scoringcomponent) === $i) SELECTED @endif
@@ -28,7 +28,7 @@
                                     {{$i}}
                                 </option>
                             @endfor
-                        @else
+                        @else {{-- bowling, high score wins, 9-1 scoring; best-to-worst --}}
                             @for($i=$scoringcomponent->bestscore; $i>=$scoringcomponent->worstscore; $i=$i-$scoringcomponent->interval)
                                 <option value="{{ $i }}"
                                         @if($auditioner->scoringcomponentScore($useradjudicator, $scoringcomponent) === $i) SELECTED @endif
