@@ -44,7 +44,7 @@
                                         {{ $registrant->id }}
                                     </a>
                                 @else
-                                    <a href="https://thedirectorsroom.com/registrants/adjudication/registrant/{{ $registrant->id }}"
+                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrants/adjudication/registrant/{{ $registrant->id }}"
                                        class="text-black {{ $registrant->adjudicationStatusBackgroundColor($room) }} {{ $registrant->judgeScoresEntered(auth()->id()) }}">
                                         {{ $registrant->id }}
                                     </a>
