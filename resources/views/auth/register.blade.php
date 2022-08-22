@@ -6,7 +6,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ config('app.url') === 'http://localhost' ? route('register') : 'https://thedirectorsroom.com/register' }}">
+        <form method="POST" action="{{ config('app.url') === 'http://localhost' ? route('register') : 'https://sea-lion-app-uichk.ondigitalocean.app/register' }}">
             @csrf
 
             <div>

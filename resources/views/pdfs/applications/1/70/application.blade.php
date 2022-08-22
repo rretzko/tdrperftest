@@ -43,7 +43,7 @@
 <table>
     <tr>
         <td style="width: 10%;">
-             <img src="https://thedirectorsroom.com/assets/images/cjmealogo.png" alt="CJMEA Logo"/>
+             <img src="https://sea-lion-app-uichk.ondigitalocean.app/assets/images/cjmealogo.png" alt="CJMEA Logo"/>
         </td>
         <td style="width: 72%;">
             <div style="font-weight: bold;">
@@ -281,7 +281,7 @@
 <table>
     <tr>
         <td style="width: 10%;">
-            <img src="https://thedirectorsroom.com/assets/images/cjmealogo.png" alt="CJMEA Logo"/>
+            <img src="https://sea-lion-app-uichk.ondigitalocean.app/assets/images/cjmealogo.png" alt="CJMEA Logo"/>
         </td>
         <td style="width: 72%;">
             <div style="font-weight: bold;">

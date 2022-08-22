@@ -38,7 +38,7 @@
                                 @if(config('app.url') === 'http://localhost')
                                     <a href="{{ route('registrant.estimateform.download', ['eventversion' => $eventversion]) }}">
                                 @else
-                                    <a href="https://thedirectorsroom.com/registrant/estimateform/{{ $eventversion->id }}/download">
+                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/estimateform/{{ $eventversion->id }}/download">
                                 @endif
                                     Download Estimate Form
                                 </a>
@@ -76,7 +76,7 @@
                                     @if(config('app.url') === 'http://localhost')
                                         <form method="post" action="{{ route('school.county') }}" >
                                     @else
-                                        <form method="post" action="https://thedirectorsroom.com/registrant/estimateform/county" >
+                                        <form method="post" action="https://sea-lion-app-uichk.ondigitalocean.app/registrant/estimateform/county" >
                                     @endif
                                         @csrf
                                         The county for <b>{{ $school->shortName }}</b> is:

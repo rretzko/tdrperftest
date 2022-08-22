@@ -104,7 +104,7 @@
 <table>
     <tr>
         <td style="width: 10%;">
-            <img src="https://thedirectorsroom.com/assets/images/njmea_logo_state.jpg" alt="NJMEA Logo"/>
+            <img src="https://sea-lion-app-uichk.ondigitalocean.app/assets/images/njmea_logo_state.jpg" alt="NJMEA Logo"/>
         </td>
         <td style="width: 72%;text-align: right;">
             <div style="font-weight: bold; text-align: right; ">{{ strtoupper($eventversion->name) }}</div>
@@ -195,7 +195,7 @@
 <table>
     <tr>
         <td style="width: 10%; text-align: center;">
-            <img src="https://thedirectorsroom.com/assets/images/NAfME_cropped.jpg" width="600px" alt="NAfME Logo"/>
+            <img src="https://sea-lion-app-uichk.ondigitalocean.app/assets/images/NAfME_cropped.jpg" width="600px" alt="NAfME Logo"/>
         </td>
     </tr>
 </table>

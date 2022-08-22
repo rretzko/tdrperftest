@@ -45,7 +45,7 @@
                                 @if(config('app.url') === 'http://localhost')
                                     <a href="{{ route('registrant.estimateform.download', ['eventversion' => $eventversion]) }}">
                                 @else
-                                    <a href="https://thedirectorsroom.com/registrant/estimateform/{{ $eventversion->id }}/download">
+                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/estimateform/{{ $eventversion->id }}/download">
                                 @endif
                                     Download Estimate Form
                                 </a>

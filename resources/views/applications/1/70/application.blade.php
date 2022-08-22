@@ -43,7 +43,7 @@
                                 @if(config('app.url') === 'http://localhost')
                                     <a href="{{ route('registrant.application.download', ['registrant' => $registrant]) }}">
                                 @else
-                                    <a href="https://thedirectorsroom.com/registrant/{{ $registrant->id }}/download">
+                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}/download">
                                 @endif
                                     Download Application For Signing
                                 </a>

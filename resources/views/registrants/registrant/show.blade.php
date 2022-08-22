@@ -59,7 +59,7 @@
                                           @if(config('app.url') === 'http://localhost')
                                             action="{{ route('registrant.update', ['registrant' => $registrant]) }}">
                                           @else
-                                            action="https://thedirectorsroom.com/registrant/update/{{ $registrant->id }}">
+                                            action="https://sea-lion-app-uichk.ondigitalocean.app/registrant/update/{{ $registrant->id }}">
                                           @endif
 
                                         @csrf
@@ -191,17 +191,17 @@
                                             @else {{-- working in prod --}}
                                                 @if($eventversion['eventversionconfigs']->eapplication) {{-- is an eApplication eventversion --}}
                                                     @if($registrant->hasApplication) {{-- eApplication is on file --}}
-                                                        <a href="https://thedirectorsroom.com/registrant/{{ $registrant->id }}/application/show" class="text-blue-700">
+                                                        <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}/application/show" class="text-blue-700">
                                                             Click here for the current eApplication
                                                         </a>
                                                     @else {{-- no current record or not eApplication eventversion --}}
-                                                    <a href="https://thedirectorsroom.com/registrant/{{ $registrant->id }}/application"
+                                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}/application"
                                                        class="text-blue-700">
                                                         Click here for a new eApplication
                                                     </a>
                                                     @endif
                                                 @else {{-- eventversion is NOT an eApplication eventversion --}}
-                                                    <a href="https://thedirectorsroom.com/registrant/{{ $registrant->id }}/application"
+                                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}/application"
                                                        class="text-blue-700">
                                                         Click here for the Application pdf
                                                         @if($registrant->applications->count())
@@ -274,7 +274,7 @@
                                                             class="rounded"
                                                         >
                                                     @else
-                                                        <a href="https://thedirectorsroom.com/registrant/{{ $registrant->id }}/signatures"
+                                                        <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}/signatures"
                                                            class="rounded"
                                                         >
                                                     @endif
@@ -360,7 +360,7 @@
                                                             </div>
                                                         @else
                                                             <div>
-                                                                <a href="https://thedirectorsroom.com/registrant/profile/{{ $eventversion->id }}/{{ $registrant->id }}/inperson" style="color: white; align-self: center;">
+                                                                <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/profile/{{ $eventversion->id }}/{{ $registrant->id }}/inperson" style="color: white; align-self: center;">
                                                                     @if($registrant->inpersonaudition && $registrant->inpersonaudition->inperson)
                                                                         Click here if you wish to submit a virtual audition
                                                                     @else
@@ -387,7 +387,7 @@
                                                                 @endif
                                                             </a>
                                                         @else
-                                                            <a href="https://thedirectorsroom.com/registrant/profile/{{ $eventversion->id }}/{{ $registrant->id }}/inperson" style="color: white; align-self: center;">
+                                                            <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/profile/{{ $eventversion->id }}/{{ $registrant->id }}/inperson" style="color: white; align-self: center;">
                                                                 @if($registrant->inpersonaudition && $registrant->inpersonaudition->inperson)
                                                                     Click here if you wish {{ $registrant->student->person->fullName }} to submit a virtual audition
                                                                 @else
@@ -468,7 +468,7 @@
                                                                             @if(config('app.url') === 'http://localhost')
                                                                                 <a href="{{ route('fileupload.reject',['registrant' => $registrant, 'filecontenttype' => $filecontenttype]) }}">
                                                                             @else
-                                                                                <a href="https://thedirectorsroom.com/registrant/reject/{{ $registrant->id }}/{{ $filecontenttype->id }}">
+                                                                                <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/reject/{{ $registrant->id }}/{{ $filecontenttype->id }}">
                                                                             @endif
 
                                                                             @if($eventversion->isOpenForMembers() || (auth()->id() === 167) || $exception)

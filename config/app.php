@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://thedirectorsroom.com'),
+    'url' => env('APP_URL', 'https://sea-lion-app-uichk.ondigitalocean.app'),
 
-    'asset_url' => env('ASSET_URL', 'https://thedirectorsroom.com'),
+    'asset_url' => env('ASSET_URL', 'https://sea-lion-app-uichk.ondigitalocean.app'),
 
     /*
     |--------------------------------------------------------------------------

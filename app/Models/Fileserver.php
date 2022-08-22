@@ -67,9 +67,9 @@ class Fileserver extends Model
             ->first()
             ->folder_id;
 
-        //https://thedirectorsroom.com/fileserver/confirmation/651234/99/98/97
+        //https://sea-lion-app-uichk.ondigitalocean.app/fileserver/confirmation/651234/99/98/97
         $token = UploadToken::create_upload_token([
-            'return_url' => 'https://thedirectorsroom.com/fileserver/confirmation/'
+            'return_url' => 'https://sea-lion-app-uichk.ondigitalocean.app/fileserver/confirmation/'
                 . $this->registrant->id.'/'.$filecontenttype->id.'/'.auth()->id().'/'.$folder_id
         ]);
 

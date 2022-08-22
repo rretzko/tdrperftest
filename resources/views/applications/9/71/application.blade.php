@@ -41,7 +41,7 @@
                             {{-- BUTTON TO DOWNLOAD PDF --}}
                             <div class="bg-blue-400 text-xs pt-3 border rounded-2xl text-white px-2">
                                  <a href="{{ route('registrant.application.download', ['registrant' => $registrant]) }}">
-                                    <!-- {{-- <a href="https://thedirectorsroom.com/registrant/{{ $registrant->id }}/download"> --}} -->
+                                    <!-- {{-- <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}/download"> --}} -->
                                     Download Application For Signing
                                 </a>
                             </div>

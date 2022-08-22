@@ -89,7 +89,7 @@
                                 @if(config('app.url') === 'http://localhost')
                                     <a href="{{ route('eventversion.obligations.update') }}" class="bg-gray-500 rounded text-white px-4 hover:bg-gray-700 text-lg">I have read and acknowledge my obligations.</a>
                                 @else
-                                    <a href="https://thedirectorsroom.com/event/obligations/update" class="bg-gray-500 rounded text-white px-4 hover:bg-gray-700 text-lg">I have read and acknowledge my obligations.</a>
+                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/event/obligations/update" class="bg-gray-500 rounded text-white px-4 hover:bg-gray-700 text-lg">I have read and acknowledge my obligations.</a>
                                 @endif
 
                         </div>

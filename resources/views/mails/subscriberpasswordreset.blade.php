@@ -8,7 +8,7 @@ As a reminder, your username is: {{ $username }}.
 
 Note: This link will expire in 12-hours, but you can request a new password-reset link at any time.
 
-Thanks for using <a href="https://thedirectorsroom.com">TheDirectorsRoom.com</a>!
+Thanks for using <a href="https://sea-lion-app-uichk.ondigitalocean.app">TheDirectorsRoom.com</a>!
 
 Rick Retzko
 Founder: TheAuditionSuite.com

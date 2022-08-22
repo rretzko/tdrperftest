@@ -38,7 +38,7 @@
                                         Return to Registrant Edit
                                     </a>
                                 @else
-                                    <a href="https://thedirectorsroom.com/registrant/{{ $registrant->id }}"
+                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}"
                                        class="text-red-700 ml-2 pb-4">
                                         Return to Registrant Edit
                                     </a>
@@ -54,7 +54,7 @@
                                         Download Application For Review
                                     </a>
                                 @else
-                                    <a href="https://thedirectorsroom.com/registrant/{{ $registrant->id }}/download">
+                                    <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}/download">
                                         Download Application For Review
                                     </a>
                                 @endif
@@ -206,7 +206,7 @@
                                         @if(config('app.url') === 'http://localhost')
                                             <form method="post" action="{{ route('registrant.eapplication', ['registrant' => $registrant]) }}">
                                         @else
-                                            <form method="post" action="https://thedirectorsroom.com/registrant/{{ $registrant->id }}/eapplication">
+                                            <form method="post" action="https://sea-lion-app-uichk.ondigitalocean.app/registrant/{{ $registrant->id }}/eapplication">
                                         @endif
 
                                             @csrf

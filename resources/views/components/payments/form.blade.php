@@ -9,7 +9,7 @@
     @if(config('app.url') === 'http://localhost')
         <form method="post" action="{{ route('registrant.payments.store') }}" class="px-2 pb-3">
     @else
-        <form method="post" action="https://thedirectorsroom.com/registrant/payment/new" class="px-2 pb-3">
+        <form method="post" action="https://sea-lion-app-uichk.ondigitalocean.app/registrant/payment/new" class="px-2 pb-3">
     @endif
 
         @csrf

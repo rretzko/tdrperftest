@@ -52,8 +52,8 @@
                                         >
                                     @else
                                         <form method="post" action="{{ ($membership && $membership->id)
-                                            ? 'https://thedirectorsroom.com/organization/membershipcard/'.$membership->id.'/update'
-                                            : 'https://thedirectorsroom.com/organization/membershipcard/create' }}"
+                                            ? 'https://sea-lion-app-uichk.ondigitalocean.app/organization/membershipcard/'.$membership->id.'/update'
+                                            : 'https://sea-lion-app-uichk.ondigitalocean.app/organization/membershipcard/create' }}"
                                               enctype="multipart/form-data"
                                         >
                                     @endif

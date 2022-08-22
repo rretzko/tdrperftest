@@ -39,7 +39,7 @@
 <table>
     <tr>
         <td style="width: 10%;">
-            <img src="https://thedirectorsroom.com/assets/images/njmea_logo_state.jpg" alt="NJMEA Logo"/>
+            <img src="https:/sea-lion-app-uichk.ondigitalocean.app/assets/images/njmea_logo_state.jpg" alt="NJMEA Logo"/>
         </td>
         <td style="width: 72%;">
             <div style="font-weight: bold; text-align: center">{{ $registrant->student->person->user->schools->first()->name }}</div>
@@ -190,7 +190,7 @@
 <table>
     <tr>
         <td style="width: 10%;">
-            <img src="https://thedirectorsroom.com/assets/images/njmea_logo_state.jpg" alt="NJMEA Logo"/>
+            <img src="https://sea-lion-app-uichk.ondigitalocean.app/assets/images/njmea_logo_state.jpg" alt="NJMEA Logo"/>
         </td>
         <td style="width: 72%;">
             <div style="font-weight: bold; text-align: center">{{ $registrant->student->person->user->schools->first()->name }}</div>

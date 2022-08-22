@@ -158,7 +158,7 @@
                                                 </a>
 
                                         @else
-                                            <a href="https://thedirectorsroom.com/registrants/configs/{{ $event->id }}">
+                                            <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrants/configs/{{ $event->id }}">
                                                 @if($event->eventversionteacherconfigs->count() &&
                                                     $event->eventversionteacherconfigs->where('user_id', auth()->id())->count() &&
                                                     $event->eventversionteacherconfigs->where('user_id', auth()->id())->first()->paypalstudent)
@@ -312,9 +312,9 @@
 
                                                 <x-tables.cell>
                                                     @if($registrant->registranttype_id === 18)
-                                                        
+
                                                         <span style="color: red;">PROHIBITED</span>
-                                                        
+
                                                         @elseif(
                                                         ($registrant->registranttype_id === 14) || {{-- QUALIFIED --}}
                                                         ($registrant->registranttype_id === 15) || {{-- APPLIED --}}

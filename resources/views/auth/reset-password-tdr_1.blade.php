@@ -8,7 +8,7 @@
         @if(config('app.url') === 'http://localhost')
             <form method="POST" action="{{ route('resetpassword.tdr.update') }}">
         @else
-            <form method="POST" action="https://thedirectorsroom.com/reset-password/tdr/update">
+            <form method="POST" action="https://sea-lion-app-uichk.ondigitalocean.app/reset-password/tdr/update">
         @endif
 
             @csrf

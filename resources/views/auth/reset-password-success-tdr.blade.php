@@ -13,7 +13,7 @@
                     Your password has been reset.
 
                     Please click <a class="text-green-900"
-                                    href="https://thedirectorsroom.com/logout/tdr"
+                                    href="https://sea-lion-app-uichk.ondigitalocean.app/logout/tdr"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     >
                         HERE
@@ -22,7 +22,7 @@
                     @if(config('app.url') === 'http://localhost')
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                     @else
-                        <form id="logout-form" action="https://thedirectorsroom.com/logout" method="POST" style="display: none;">@csrf</form>
+                        <form id="logout-form" action="https://sea-lion-app-uichk.ondigitalocean.app/logout" method="POST" style="display: none;">@csrf</form>
                     @endif
                 </div>
             </div>

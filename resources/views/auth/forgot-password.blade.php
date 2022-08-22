@@ -19,7 +19,7 @@
         <!-- {{-- OUT OF THE BOX
             <form method="POST" action="{{ route('password.email') }}">
         --}} -->
-        <form method="POST" action="https://thedirectorsroom.com/forgot-password/tdr">
+        <form method="POST" action="https://sea-lion-app-uichk.ondigitalocean.app/forgot-password/tdr">
             @csrf
 
             <div class="block">
