@@ -248,7 +248,7 @@
                     <form method="post" id="dev" action="{{ route('login.tdr.update') }}" style="padding:.25rem .5rem;">
                 @else
                     {{-- USE THE PRODUCTION ENVIRONMENT --}}
-                    <form method="post" id="{{ config('app.url') }}" action="https://thedirectorsroom.com/login/tdr/update" style="padding:.25rem .5rem;">
+                    <form method="post" id="{{ config('app.url') }}" action="https://sea-lion-app-uichk.ondigitalocean.app/login/tdr/update" style="padding:.25rem .5rem;">
                 @endif
 
                     @csrf
