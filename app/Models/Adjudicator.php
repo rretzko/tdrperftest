@@ -62,8 +62,7 @@ class Adjudicator extends Model
                 ->whereHas('instrumentations', function($query) use($roominstrumentation) {
                     $query->whereIn('id', [$roominstrumentation]);
                 })
-                    ->limit(5)
-                    ->get();
+                ->get();
         }
 
         return $rs;
