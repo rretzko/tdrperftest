@@ -175,8 +175,8 @@ class Registrantcomponent extends Component
     {
         $eventversion = Eventversion::find(Userconfig::getValue('eventversion', auth()->id()));
 
-        $dt_open = $eventversion->eventversiondates->where('datetype_id', \App\Models\Datetype::SCORE_OPEN)->first()->dt;
-        $dt_close = $eventversion->eventversiondates->where('datetype_id', \App\Models\Datetype::SCORE_CLOSE)->first()->dt;
+        $dt_open = $eventversion->eventversiondates->where('datetype_id', \App\Models\Datetype::SCORE_OPEN)->first()->dt; //11
+        $dt_close = $eventversion->eventversiondates->where('datetype_id', \App\Models\Datetype::SCORE_CLOSE)->first()->dt; //12
 
         if((Carbon::now() > $dt_open) && (Carbon::now() < $dt_close)) {
 

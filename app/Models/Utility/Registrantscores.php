@@ -33,5 +33,6 @@ class Registrantscores extends Model
     private function init()
     {
         $this->componentscores = \App\Models\Score::where('registrant_id', $this->registrant->id)->get();
+
     }
 }

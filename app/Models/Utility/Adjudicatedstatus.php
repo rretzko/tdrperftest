@@ -47,6 +47,7 @@ class Adjudicatedstatus extends Model
         }else{
             return 'error';
         }
+
     }
     /** END OF PUBLIC PROPERTIES *************************************************/
 
@@ -63,6 +64,7 @@ class Adjudicatedstatus extends Model
 
         //Adjudicators registered for $this->registrant
         $this->adjudicators = $this->room ? $this->room->adjudicators : NULL;
+
     }
 
     private function completed()

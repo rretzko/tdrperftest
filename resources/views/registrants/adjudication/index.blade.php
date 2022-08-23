@@ -39,11 +39,13 @@
                             <!-- {{-- class="text-black {{ $registrant->adjudicationStatusBackgroundColor($room) }} {{ $registrant->judgeScoresEntered(auth()->id()) }}"> --}} -->
                                 @if(config('app.url') === 'http://localhost')
                                     <a href="{{ route('registrants.adjudication.show', ['registrant' => $registrant]) }}"
-                                    style="background:{{ $registrant->auditionStatus($room) ? $registrant->auditionStatus($room)->auditionstatustype->background : 'aliceblue' }}; color:{{ $registrant->auditionStatus($room) ? $registrant->auditionStatus($room)->auditionstatustype->color : 'black' }};"
-                                >
+                                       class="text-black {{ $registrant->adjudicationStatusBackgroundColor($room) }} {{ $registrant->judgeScoresEntered(auth()->id()) }}">
+                                    {{-- style="background:{{ $registrant->auditionStatus($room) ? $registrant->auditionStatus($room)->auditionstatustype->background : 'aliceblue' }}; color:{{ $registrant->auditionStatus($room) ? $registrant->auditionStatus($room)->auditionstatustype->color : 'black' }};"
+                                > --}}
                                         {{ $registrant->id }}
                                     </a>
                                 @else
+
                                     <a href="https://sea-lion-app-uichk.ondigitalocean.app/registrants/adjudication/registrant/{{ $registrant->id }}"
                                        class="text-black {{ $registrant->adjudicationStatusBackgroundColor($room) }} {{ $registrant->judgeScoresEntered(auth()->id()) }}">
                                         {{ $registrant->id }}

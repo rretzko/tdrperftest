@@ -55,11 +55,13 @@ class Adjudicator extends Model
             })->get();
 
         foreach($roominstrumentations AS $roominstrumentation){
-            $rs[Instrumentation::find($roominstrumentation)->formattedDescr()] = Registrant::where('eventversion_id', Userconfig::getValue('eventversion', auth()->id()))
+            $rs[Instrumentation::find($roominstrumentation)->formattedDescr()] =
+                Registrant::where('eventversion_id', Userconfig::getValue('eventversion', auth()->id()))
                 ->where('registranttype_id', Registranttype::REGISTERED)
-                ->whereHas('instrumentations', function($query) use($roominstrumentation){
-                    $query->whereIn('id',[$roominstrumentation]);
-                })->get();
+                ->whereHas('instrumentations', function($query) use($roominstrumentation) {
+                    $query->whereIn('id', [$roominstrumentation]);
+                })
+                ->get();
         }
 
         return $rs;
