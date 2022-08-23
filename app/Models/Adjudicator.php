@@ -52,7 +52,8 @@ class Adjudicator extends Model
             ->where('registranttype_id', Registranttype::REGISTERED)
             ->whereHas('instrumentations', function($query) use($roominstrumentations){
                 $query->whereIn('id',$roominstrumentations);
-            })->get();
+            })
+            ->get();
 
         foreach($roominstrumentations AS $roominstrumentation){
             $rs[Instrumentation::find($roominstrumentation)->formattedDescr()] =
@@ -61,7 +62,8 @@ class Adjudicator extends Model
                 ->whereHas('instrumentations', function($query) use($roominstrumentation) {
                     $query->whereIn('id', [$roominstrumentation]);
                 })
-                ->get();
+                    ->limit(5)
+                    ->get();
         }
 
         return $rs;
