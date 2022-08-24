@@ -51,6 +51,7 @@ Route::middleware('auth', 'verified')->group(function() {
     Route::get('impersonation/destroy', [App\Http\Controllers\Siteadministration\ImpersonationController::class, 'destroy']);
     Route::get('sa/emails/dump/{offset?}/{length?}', [App\Http\Controllers\Siteadministration\EmailsCsvController::class, 'export'])->name('siteadministrator.emailsdump');
     Route::get('sa/participatingstudents', [App\Http\Controllers\Siteadministration\ParticipatingstudentstableController::class, 'index'])->name('siteadministration.participatingstudentstable.index');
+    Route::get('sa/perftestusers', [App\Http\Controllers\Siteadministration\UpdatePerfTestUsersPasswordController::class, 'index'])->name('siteadministration.perftestusers');
     Route::get('sa/teachertable', [App\Http\Controllers\Siteadministration\TeachertableController::class, 'index'])->name('siteadministration.teachertable.index');
     Route::get('sa/teachertable/email', [App\Http\Controllers\Siteadministration\TeachertablebyemailController::class, 'index'])->name('siteadministration.teachertable.byemail.index');
 

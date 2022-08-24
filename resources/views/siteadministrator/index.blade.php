@@ -68,6 +68,11 @@
                             </a>
                         </div>
 
+                        <div>
+                            <a href="{{ route('siteadministration.perftestusers') }}" style="color: black;">
+                                Update Passwords
+                            </a>
+                        </div>
 
                     </x-slot>
 
