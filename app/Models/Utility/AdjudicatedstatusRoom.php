@@ -59,7 +59,8 @@ class AdjudicatedstatusRoom extends Model
         $this->countscores = ($this->countScores() * $this->adjudicators->count());
 
         //Object to access all scores for $this->registrant in $this->room
-        $this->scores = $this->roomScores();
+//        $this->scores = $this->roomScores();
+        $this->scores = $this->roomScoresV2();
 
         //Count of component scores registered for $this->registrant in $this->room
         $this->countregistrantscores = $this->scores->count();
@@ -72,15 +73,23 @@ class AdjudicatedstatusRoom extends Model
 
     private function countScores()
     {
-        $cntr = 0;
+//        $cntr = 0;
         $filecontenttypeids = $this->room->filecontenttypes->modelKeys();
+        
+        return \App\Models\Scoringcomponent::where('eventversion_id', $this->eventversion->id)
+            ->whereIn('filecontenttype_id',$filecontenttypeids)            
+            ->count();
 
-        foreach(\App\Models\Scoringcomponent::where('eventversion_id', $this->eventversion->id)->get() AS $scoringcomponent){
+        /*
+            foreach(\App\Models\Scoringcomponent::where('eventversion_id', $this->eventversion->id)->get() AS $scoringcomponent){
 
-            $cntr += (in_array($scoringcomponent->filecontenttype_id, $filecontenttypeids));
-        }
+                $cntr += (in_array($scoringcomponent->filecontenttype_id, $filecontenttypeids));
+            }
+         * 
+            return $cntr;
+         *
+         */
 
-        return $cntr;
     }
 
     private function excess()
@@ -120,6 +129,33 @@ class AdjudicatedstatusRoom extends Model
         }
 
         return $roomscores;
+    }
+    
+    private function roomScoresV2()
+    {        
+        $registrantscores = new \App\Models\Utility\Registrantscores(['registrant' => $this->registrant]);
+
+        $scores = $registrantscores->componentscores();
+
+        //early exit
+        if (!$scores) {
+            return collect([]);
+        }
+        
+        $eventVersionId = \App\Models\Userconfig::getValue('eventversion', auth()->id());
+
+        $adjudicatorsIds = $this->adjudicators->pluck('id');
+
+        $roomscores = \App\Models\Score::query()
+            ->where('scores.eventversion_id', $eventVersionId)
+            ->where('scores.registrant_id', $this->registrant->id)
+            ->join('adjudicators', 'adjudicators.user_id', '=', 'scores.user_id')
+            ->whereIn('adjudicators.id', $adjudicatorsIds)
+            ->where('adjudicators.room_id', $this->room->id)
+            ->where('adjudicators.eventversion_id', $eventVersionId)
+            ->get();
+
+        return  $roomscores;        
     }
 
     /**

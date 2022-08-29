@@ -32,7 +32,10 @@ class RegistrantAdjudicationController extends Controller
 
         return view('registrants.adjudication.index', [
             'eventversion' => $eventversion,
-            'room' => \App\Models\Room::with('adjudicators')->where('id', $adjudicator->room_id)->first(),
+            'room' => \App\Models\Room::with([
+               'adjudicators',
+               'filecontenttypes'
+             ])->where('id', $adjudicator->room_id)->first(),
             'registrants' => $registrants,
             'registrantscount' => $registrantscount,
             'auditioner' => null,
