@@ -112,11 +112,14 @@ class Registrant extends Model
             'unauditioned' => 'bg-white',
         ];
 
-        return $colors[$this->adjudicatedStatus($room)];
+        $status= $this->adjudicatedStatus($room);
+                
+        return $colors[$status];
     }
 
+    
     public function auditionStatus(\App\Models\Room $room=NULL)
-    {
+    {        
         //initialize a database row if non exists
         if(! Auditionstatus::where('registrant_id', $this->id)
             ->where('room_id', ($room) ? $room->id : 0)
@@ -295,11 +298,12 @@ class Registrant extends Model
      */
     public function judgeScoresEntered($user_id)
     {
-        return (\App\Models\Score::where('registrant_id', $this->id)
+        return  ($this->scores()
                 ->where('user_id', $user_id)
-                ->first())
+                ->exists())
                 ? 'font-bold'
                 : '';
+            
     }
 
     public function paid()
@@ -349,10 +353,20 @@ class Registrant extends Model
 
     public function scoringcomponentScore(\App\Models\Adjudicator $adjudicator, \App\Models\Scoringcomponent $scoringcomponent)
     {
-        return \App\Models\Score::where('registrant_id', $this->id)
+//        return \App\Models\Score::where('registrant_id', $this->id)
+//            ->where('user_id', $adjudicator->user_id)
+//            ->where('scoringcomponent_id', $scoringcomponent->id)
+//            ->value('score') ?? 0;
+        
+        return $this->scores()
             ->where('user_id', $adjudicator->user_id)
             ->where('scoringcomponent_id', $scoringcomponent->id)
             ->value('score') ?? 0;
+    }
+    
+    public function scores()
+    {
+        return $this->hasMany(Score::class, 'registrant_id');
     }
 
     public function signatures()

@@ -107,38 +107,15 @@ class AdjudicatedstatusRoom extends Model
      *
      * @return \Illuminate\Support\Collection
      */
-    private function roomScores()
-    {
-        $roomscores = collect();
-        $registrantscores = new \App\Models\Utility\Registrantscores([ 'registrant' => $this->registrant]);
-        $scores = $registrantscores->componentscores();
-
-        //early exit
-        if(! $scores){ return $roomscores;}
-
-        foreach($scores AS $score){
-
-            if($this->adjudicators->contains(
-                \App\Models\Adjudicator::where('user_id',$score->user_id)
-                    ->where('eventversion_id', \App\Models\Userconfig::getValue('eventversion', auth()->id()))
-                    ->where('room_id', $this->room->id)
-                    ->first())){
-
-                $roomscores->push($score);
-            }
-        }
-
-        return $roomscores;
-    }
-    
     private function roomScoresV2()
     {        
-        $registrantscores = new \App\Models\Utility\Registrantscores(['registrant' => $this->registrant]);
+//        $registrantscores = new \App\Models\Utility\Registrantscores(['registrant' => $this->registrant]);
 
-        $scores = $registrantscores->componentscores();
+//        $scores = $registrantscores->componentscores();
+        $scoresCount = $this->registrant->scores->count();
 
         //early exit
-        if (!$scores) {
+        if (!$scoresCount) {
             return collect([]);
         }
         
@@ -167,14 +144,14 @@ class AdjudicatedstatusRoom extends Model
     {
         //container for total scores
         $scores = [];
-
+        
         //iterate through each of the room's adjudicators to determine their total ROOM score FOR $this->registrant
         foreach($this->adjudicators AS $adjudicator){
-
             $scores[] = \App\Models\Score::where('registrant_id', $this->registrant->id)
                 ->where('user_id', $adjudicator->user_id)
                 ->sum('score');
         }
+        
 
         //Return true if OUT of tolerance
         return ((max($scores) - min($scores)) > $this->room->tolerance);

@@ -18,6 +18,7 @@ class RegistrantAdjudicationController extends Controller
      */
     public function index(Eventversion $eventversion)
     {
+        
         $adjudicator = \App\Models\Adjudicator::with('user','user.person')
             ->where('user_id', auth()->id())
             ->where('eventversion_id', $eventversion->id)
@@ -75,6 +76,8 @@ class RegistrantAdjudicationController extends Controller
     public function show($id)
     {
         $auditioner = \App\Models\Registrant::find($id);
+        
+        
         $eventversion = Eventversion::find(\App\Models\Userconfig::getValue('eventversion', auth()->id()));
 
         $useradjudicator = \App\Models\Adjudicator::with('user','user.person')
@@ -91,9 +94,17 @@ class RegistrantAdjudicationController extends Controller
             $registrantscount += $collection->count();
         }
 
+        $room = \App\Models\Room::with([
+           'adjudicators',
+           'filecontenttypes.scoringcomponents' ,
+           
+           ])
+            ->where('id', $useradjudicator->room_id)
+            ->first();
+        
         return view('registrants.adjudication.index', [
             'eventversion' => $eventversion,
-            'room' => \App\Models\Room::with('adjudicators')->where('id', $useradjudicator->room_id)->first(),
+            'room' => $room,
             'registrants' => $registrants,
             'registrantscount' => $registrantscount,
             'auditioner' => $auditioner,
@@ -123,12 +134,14 @@ class RegistrantAdjudicationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $inputs = $request->validate([
            'scoringcomponents' => ['required', 'array'],
            'scoringcomponents.*' => ['required', 'numeric'],
         ]);
 
         $eventversion = Eventversion::find(\App\Models\Userconfig::getValue('eventversion', auth()->id()));
+
 
         foreach($inputs['scoringcomponents'] AS $scoringcomponent_id => $score) {
 

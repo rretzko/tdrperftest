@@ -29,7 +29,7 @@ class Score extends Model
 
     public function scoringcomponent()
     {
-        return $this->belongsTo(Scoringcomponent::class);
+        return $this->belongsTo(Scoringcomponent::class,'scoringcomponent_id','id');
     }
 
     public function mapScores($scores)

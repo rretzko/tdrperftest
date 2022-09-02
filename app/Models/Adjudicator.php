@@ -45,56 +45,34 @@ class Adjudicator extends Model
 
     public function getRegistrantsAttribute()
     {
-        $rs = [];
-        $roominstrumentations = $this['room']->instrumentations->modelKeys();
+        $eventVersionId = Userconfig::getValue('eventversion', auth()->id());
 
-        /*
-        $registrants =  Registrant::where('eventversion_id', Userconfig::getValue('eventversion', auth()->id()))
-            ->where('registranttype_id', Registranttype::REGISTERED)
-            ->whereHas('instrumentations', function($query) use($roominstrumentations){
-                $query->whereIn('id',$roominstrumentations);
-            })
-            ->get();
-        */     
+        return $this->room->instrumentations
+            ->reduce(function ($carry, Instrumentation $instrumentation) use ($eventVersionId)
+            {
+                $instrumentFormattedDescr = $instrumentation->formattedDescr();
 
-        foreach($roominstrumentations AS $roominstrumentation){
-            $rs[Instrumentation::find($roominstrumentation)->formattedDescr()] =
-                Registrant::where('eventversion_id', Userconfig::getValue('eventversion', auth()->id()))
-                ->where('registranttype_id', Registranttype::REGISTERED)
-                ->whereHas('instrumentations', function($query) use($roominstrumentation) {
-                    $query->whereIn('id', [$roominstrumentation]);
-                })
-                ->with([
-                   'eventversion'
-                ])
-                ->limit(200)
-                ->get();
-        }
+                $registrants = $instrumentation->registrants()
+                        ->where('eventversion_id', $eventVersionId)
+                        ->where('registranttype_id', Registranttype::REGISTERED)
+                        ->with([
+                           'eventversion',
+                        ])
+                    ->get();
 
-        return $rs;
-
-        //return $registrants;
-/*
-
-        $x = Registrant::where('eventversion_id', Userconfig::getValue('eventversion', auth()->id()))
-            ->where('registranttype_id', Registranttype::REGISTERED)
-            ->whereHas('instrumentations', function($query) use($roominstrumentation){
-                $query->whereIn('id',$roominstrumentation);
-            })->get();
-
-        foreach($x AS $y){
-            if($y->id === 656923){
-
-                dd($y->instrumentations);
-            }
-        }
-        return $x;
-*/
+                $carry[$instrumentFormattedDescr] = $registrants;
+                return $carry;
+            }, []);
     }
 
     public function person()
     {
         return $this->belongsTo(Person::class, 'user_id', 'user_id');
+    }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class, 'user_id', 'user_id');
     }
 
     public function registrantScore(\App\Models\Registrant $registrant)
@@ -105,15 +83,15 @@ class Adjudicator extends Model
             ->sum('score') ?? 0;
         */
         $totalscore = 0;
-
-        $scores = \App\Models\Score::where('registrant_id', $registrant->id)
-            ->where('user_id', $this->user_id)
+                
+        $scores = $this->scores()
+            ->where('registrant_id', $registrant->id)
+            ->with(['scoringcomponent'])            
             ->get();
-
+            
+        
         foreach($scores AS $score){
-
-            $sc = \App\Models\Scoringcomponent::find($score->scoringcomponent_id);
-
+            $sc= $score->scoringcomponent;           
             $totalscore += ($score->score * $sc->multiplier);
         }
 
