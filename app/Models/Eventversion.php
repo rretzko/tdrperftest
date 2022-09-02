@@ -37,11 +37,13 @@ class Eventversion extends Model
     public function eventensembles()
     {
        // return $this->belongsToMany(Eventensemble::class);
-        /**
-         * Looks suspicious, but if it was done so, there might have been a good reason,
-         * so making it not to fail in edge cases
-         */
-        return $this->event?->eventensembles;
+
+        if(! $this->id){
+            $eventversion = Eventversion::find(Userconfig::getValue('eventversion', auth()->id()));
+            return $eventversion->event->eventensembles;
+        }
+
+        return $this->event->eventensembles;
     }
 
     public function eventversionconfigs()

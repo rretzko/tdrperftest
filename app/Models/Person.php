@@ -50,7 +50,7 @@ class Person extends Model
     public function getFullNameAttribute()
     {
         $str = $this->first;
-        $str .= (strlen($this->middle)) ? ' '.$this->middle : '';
+        $str .= (is_null($this->middle) || (! strlen($this->middle))) ? ' '.$this->middle : '';
         $str .= ' '.$this->last;
 
         return $str;
@@ -60,7 +60,7 @@ class Person extends Model
     {
         $str = $this->last;
         $str .= ', '.$this->first;
-        $str .= (strlen($this->middle)) ? ' '.$this->middle : '';
+        $str .= ((! is_null($this->middle)) && strlen($this->middle)) ? ' '.$this->middle : '';
 
         return $str;
     }

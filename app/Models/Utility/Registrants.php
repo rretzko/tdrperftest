@@ -137,16 +137,19 @@ class Registrants extends Model
      */
     private static function defaultInstrumentationId(Registrant $registrant)
     {
-        $eventversion = (self::$eventversion_id != 73) //Morris Area Chorus
-            ? Eventversion::with('eventensembles')->where('id', self::$eventversion_id)->first()
-            : Eventversion::find(Userconfig::getValue('eventversion', auth()->id()));
+        //$eventversion = (self::$eventversion_id != 73) //Morris Area Chorus
+            //? Eventversion::with('eventensembles')->where('id', self::$eventversion_id)->first()
+           // ? Eventversion::find(self::$eventversion_id)
+           // : Eventversion::find(Userconfig::getValue('eventversion', auth()->id()));
+
+        $eventversion = Eventversion::find(Userconfig::getValue('eventversion', auth()->id()));
 
         $eventversioninstrumentations = (self::$eventversion_id != 73) //Morris Area Chorus
             ? $eventversion->eventensembles()->first()->eventensembletype()->instrumentations
             : (($registrant->student->grade < 9)
                 ? $eventversion->eventensembles()[0]->eventensembletype()->instrumentations //Middle School
                 : $eventversion->eventensembles()[1]->eventensembletype()->instrumentations); //High School
-                                 
+
         $eventversionfirstinstrumentid = $eventversioninstrumentations->first()->id;
 
         $registrantinstrumentations = $registrant->student->person->user->instrumentations ?? null;
