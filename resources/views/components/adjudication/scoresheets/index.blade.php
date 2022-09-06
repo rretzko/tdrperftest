@@ -2,6 +2,7 @@
     label{text-align: center; border: 1px solid black;background-color: lightgray;}
     .box{min-width: 6rem; max-width: 6rem; width: 6rem;}
 </style>
+{{-- 06-Sep-22 pull from judge_speed_up_2 --}}
 <div class="ml-4">
 
     {{-- TOTAL SCORE --}}
@@ -16,11 +17,11 @@
             <div class="flex flex-row">
 
             @foreach($filecontenttype->scoringcomponents->sortBy('order_by') AS $scoringcomponent)
-            
+
                 @php
                     $scoringComponentCached = $auditioner->scoringcomponentScore($useradjudicator, $scoringcomponent);
                 @endphp
-                
+
                 <div class="flex flex-col">
                     <label class="box" for="" title="{{ $scoringcomponent->descr }}">{{ $scoringcomponent->abbr }}</label>
                     <select class="box" id="box{{ $scoringcomponent->order_by }}" name="scoringcomponents[{{$scoringcomponent->id}}]" onchange="recalcScore({{$eventversion->id}})">
