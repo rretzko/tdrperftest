@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class RegistrantAdjudicationController extends Controller
 {
+    //06-Sep-22 pull from judge_speed_up_2
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +20,7 @@ class RegistrantAdjudicationController extends Controller
      */
     public function index(Eventversion $eventversion)
     {
-        
+
         $adjudicator = \App\Models\Adjudicator::with('user','user.person')
             ->where('user_id', auth()->id())
             ->where('eventversion_id', $eventversion->id)
@@ -76,8 +78,8 @@ class RegistrantAdjudicationController extends Controller
     public function show($id)
     {
         $auditioner = \App\Models\Registrant::find($id);
-        
-        
+
+
         $eventversion = Eventversion::find(\App\Models\Userconfig::getValue('eventversion', auth()->id()));
 
         $useradjudicator = \App\Models\Adjudicator::with('user','user.person')
@@ -97,11 +99,11 @@ class RegistrantAdjudicationController extends Controller
         $room = \App\Models\Room::with([
            'adjudicators',
            'filecontenttypes.scoringcomponents' ,
-           
+
            ])
             ->where('id', $useradjudicator->room_id)
             ->first();
-        
+
         return view('registrants.adjudication.index', [
             'eventversion' => $eventversion,
             'room' => $room,
@@ -134,7 +136,7 @@ class RegistrantAdjudicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $inputs = $request->validate([
            'scoringcomponents' => ['required', 'array'],
            'scoringcomponents.*' => ['required', 'numeric'],

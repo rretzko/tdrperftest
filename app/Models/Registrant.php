@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registrant extends Model
 {
+    //06-Sep-22 pull from judge_speed_up_2
+
     use HasFactory;
 
     protected $fillable = ['eventversion_id', 'id', 'programname', 'registranttype_id', 'school_id', 'teacher_user_id',
@@ -113,13 +115,13 @@ class Registrant extends Model
         ];
 
         $status= $this->adjudicatedStatus($room);
-                
+
         return $colors[$status];
     }
 
-    
+
     public function auditionStatus(\App\Models\Room $room=NULL)
-    {        
+    {
         //initialize a database row if non exists
         if(! Auditionstatus::where('registrant_id', $this->id)
             ->where('room_id', ($room) ? $room->id : 0)
@@ -303,7 +305,7 @@ class Registrant extends Model
                 ->exists())
                 ? 'font-bold'
                 : '';
-            
+
     }
 
     public function paid()
@@ -357,13 +359,13 @@ class Registrant extends Model
 //            ->where('user_id', $adjudicator->user_id)
 //            ->where('scoringcomponent_id', $scoringcomponent->id)
 //            ->value('score') ?? 0;
-        
+
         return $this->scores()
             ->where('user_id', $adjudicator->user_id)
             ->where('scoringcomponent_id', $scoringcomponent->id)
             ->value('score') ?? 0;
     }
-    
+
     public function scores()
     {
         return $this->hasMany(Score::class, 'registrant_id');

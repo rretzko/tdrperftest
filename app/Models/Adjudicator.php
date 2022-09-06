@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class Adjudicator extends Model
 {
+    //06-Sep-22 pull from judge_speed_up_2
+
     use HasFactory;
 
     protected $with = ['user'];
@@ -83,15 +85,15 @@ class Adjudicator extends Model
             ->sum('score') ?? 0;
         */
         $totalscore = 0;
-                
+
         $scores = $this->scores()
             ->where('registrant_id', $registrant->id)
-            ->with(['scoringcomponent'])            
+            ->with(['scoringcomponent'])
             ->get();
-            
-        
+
+
         foreach($scores AS $score){
-            $sc= $score->scoringcomponent;           
+            $sc= $score->scoringcomponent;
             $totalscore += ($score->score * $sc->multiplier);
         }
 

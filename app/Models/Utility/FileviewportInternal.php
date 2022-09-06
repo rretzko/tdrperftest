@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 
 class FileviewportInternal extends Model
 {
+    //06-Sep-22 pull from judge_speed_up_2
+
     protected $filecontenttype;
     protected $registrant;
 
@@ -49,7 +51,7 @@ class FileviewportInternal extends Model
     private function mp3player(\App\Models\Fileupload $fileupload)
     {
         $path = $fileupload->server_id.$fileupload->folder_id.'/'.$fileupload->folder_id;
-        
+
 //        return  '';
         $src = Storage::disk('spaces')->url($path);
 

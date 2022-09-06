@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdjudicatedstatusRoom extends Model
 {
+    //06-Sep-22 pull from judge_speed_up_2
+
     use HasFactory;
 
     private $eventversion;
@@ -75,9 +77,9 @@ class AdjudicatedstatusRoom extends Model
     {
 //        $cntr = 0;
         $filecontenttypeids = $this->room->filecontenttypes->modelKeys();
-        
+
         return \App\Models\Scoringcomponent::where('eventversion_id', $this->eventversion->id)
-            ->whereIn('filecontenttype_id',$filecontenttypeids)            
+            ->whereIn('filecontenttype_id',$filecontenttypeids)
             ->count();
 
         /*
@@ -85,7 +87,7 @@ class AdjudicatedstatusRoom extends Model
 
                 $cntr += (in_array($scoringcomponent->filecontenttype_id, $filecontenttypeids));
             }
-         * 
+         *
             return $cntr;
          *
          */
@@ -108,7 +110,7 @@ class AdjudicatedstatusRoom extends Model
      * @return \Illuminate\Support\Collection
      */
     private function roomScoresV2()
-    {        
+    {
 //        $registrantscores = new \App\Models\Utility\Registrantscores(['registrant' => $this->registrant]);
 
 //        $scores = $registrantscores->componentscores();
@@ -118,7 +120,7 @@ class AdjudicatedstatusRoom extends Model
         if (!$scoresCount) {
             return collect([]);
         }
-        
+
         $eventVersionId = \App\Models\Userconfig::getValue('eventversion', auth()->id());
 
         $adjudicatorsIds = $this->adjudicators->pluck('id');
@@ -132,7 +134,7 @@ class AdjudicatedstatusRoom extends Model
             ->where('adjudicators.eventversion_id', $eventVersionId)
             ->get();
 
-        return  $roomscores;        
+        return  $roomscores;
     }
 
     /**
@@ -144,14 +146,14 @@ class AdjudicatedstatusRoom extends Model
     {
         //container for total scores
         $scores = [];
-        
+
         //iterate through each of the room's adjudicators to determine their total ROOM score FOR $this->registrant
         foreach($this->adjudicators AS $adjudicator){
             $scores[] = \App\Models\Score::where('registrant_id', $this->registrant->id)
                 ->where('user_id', $adjudicator->user_id)
                 ->sum('score');
         }
-        
+
 
         //Return true if OUT of tolerance
         return ((max($scores) - min($scores)) > $this->room->tolerance);

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Score extends Model
 {
+    //06-Sep-22 pull from judge_speed_up_2
+
     use HasFactory;
 
     protected $with = ['scoringcomponent'];
