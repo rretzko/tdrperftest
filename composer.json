@@ -22,9 +22,7 @@
         "league/flysystem-aws-s3-v3": "~1.0",
         "livewire/livewire": "^2.0",
         "maatwebsite/excel": "^3.1",
-        "sproutvideo/sproutvideo": "dev-master"
-    },
-    "require-dev": {
+        "sproutvideo/sproutvideo": "dev-master",
         "barryvdh/laravel-debugbar": "^3.5",
         "beyondcode/laravel-query-detector": "^1.5",
         "facade/ignition": "^2.5",
@@ -33,6 +31,9 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
+    },
+    "require-dev": {
+
     },
     "config": {
         "optimize-autoloader": true,
