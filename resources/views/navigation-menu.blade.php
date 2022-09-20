@@ -112,7 +112,7 @@
              )
                 ? 'active' : ''  }} "
        title="Auditions"
-    >
+    >Auditions###
         <!-- heroicon cake -->
         <svg xmlns="http://www.w3.org/2000/svg"
              width="20px" height="20px"
@@ -187,7 +187,7 @@
              )
                 ? 'active' : ''  }}"
     >
-        Auditions
+        Auditions!!!
     </a>
 </nav>
 
