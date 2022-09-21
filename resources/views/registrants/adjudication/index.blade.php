@@ -72,7 +72,7 @@
             <div id="viewport">
                 <div class="flex justify-center">
                     @if($auditioner)
-                        @if(! $eventversion->eventversionconfigs->virtualaudition)
+                        @if($eventversion->eventversionconfigs->virtualaudition)
                             <div class="flex flex-col">
                             <div class="text-center bg-indigo-100 border border-indigo-700">
                                 Now adjudicating: {{ $auditioner->id }}: {{ strtoupper($auditioner->instrumentations->first()->abbr) }}
