@@ -74,52 +74,53 @@
                     @if($auditioner)
                         @if($eventversion->eventversionconfigs->virtualaudition)
                             <div class="flex flex-col">
-                            <div class="text-center bg-indigo-100 border border-indigo-700">
-                                Now adjudicating: {{ $auditioner->id }}: {{ strtoupper($auditioner->instrumentations->first()->abbr) }}
-                            </div>
-                            <div class=" mb-1">
-                                @if(config('app.url') === 'http://localhost')
-                                    @foreach($room->filecontenttypes->sortBY('order_by') AS $filecontenttype)
-                                        <div  class="flex flex-row flex-wrap mb-1 ">
-                                            @if($auditioner->hasFileUploadedAndApproved($filecontenttype))
-                                                <!-- {{-- @if(in_array(auth()->id(), $viewers)) --}} -->
-                                                    {!! $auditioner->fileviewport($filecontenttype) !!}
-                                            <!-- {{-- @else
-                                                    Judging only
-                                                @endif --}} -->
-                                                {{-- $filecontenttype->descr  file viewport here --}}
-                                            @else
-                                                Missing @if($auditioner->hasFileUploaded($filecontenttype)) approved @endif {{ $filecontenttype->descr }} file.
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                @else
-                                    @foreach($room->filecontenttypes->sortBY('order_by') AS $filecontenttype)
-                                        <div class="flex flex-row flex-wrap mb-1 ">
-                                            @if($auditioner->hasFileUploadedAndApproved($filecontenttype))
-                                                <!-- {{-- @if(in_array(auth()->id(),$viewers)) --}} -->
-                                                    {!! $auditioner->fileviewport($filecontenttype) !!}
+                                <div class="text-center bg-indigo-100 border border-indigo-700">
+                                    Now adjudicating: {{ $auditioner->id }}: {{ strtoupper($auditioner->instrumentations->first()->abbr) }}
+                                </div>
+                                <div class=" mb-1">
+                                    @if(config('app.url') === 'http://localhost')
+                                        @foreach($room->filecontenttypes->sortBY('order_by') AS $filecontenttype)
+                                            <div  class="flex flex-row flex-wrap mb-1 ">
+                                                @if($auditioner->hasFileUploadedAndApproved($filecontenttype))
+                                                    <!-- {{-- @if(in_array(auth()->id(), $viewers)) --}} -->
+                                                        {!! $auditioner->fileviewport($filecontenttype) !!}
                                                 <!-- {{-- @else
-                                                    Judging only
-                                                @endif --}} -->
-                                            @else
-                                                Missing {{ $filecontenttype->descr }} file.
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                   <!-- {{--
-                                    @if($room->filecontenttypes->count() === 1)
-                                        {!! $auditioner->fileviewport($room->filecontenttypes->first()) !!}
-                                    @else{
-                                        {!! $auditioner->fileviewport(\App\Models\Filecontenttype::find(1)) !!}
+                                                        Judging only
+                                                    @endif --}} -->
+                                                    {{-- $filecontenttype->descr  file viewport here --}}
+                                                @else
+                                                    Missing @if($auditioner->hasFileUploaded($filecontenttype)) approved @endif {{ $filecontenttype->descr }} file.
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        @foreach($room->filecontenttypes->sortBY('order_by') AS $filecontenttype)
+                                            <div class="flex flex-row flex-wrap mb-1 ">
+                                                @if($auditioner->hasFileUploadedAndApproved($filecontenttype))
+                                                    <!-- {{-- @if(in_array(auth()->id(),$viewers)) --}} -->
+                                                        {!! $auditioner->fileviewport($filecontenttype) !!}
+                                                    <!-- {{-- @else
+                                                        Judging only
+                                                    @endif --}} -->
+                                                @else
+                                                    Missing {{ $filecontenttype->descr }} file.
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                       <!-- {{--
+                                        @if($room->filecontenttypes->count() === 1)
+                                            {!! $auditioner->fileviewport($room->filecontenttypes->first()) !!}
+                                        @else{
+                                            {!! $auditioner->fileviewport(\App\Models\Filecontenttype::find(1)) !!}
+                                        @endif
+                                        --}} -->
                                     @endif
-                                    --}} -->
-                                @endif
-                            </div>
-                            <div class="text-center border border-black rounded bg-gray-100">
-                                <a href="/registrants/adjudication/{{ $eventversion->id }}" class="text-black">
-                                    Cancel
-                                </a>
+                                </div>
+                                <div class="text-center border border-black rounded bg-gray-100">
+                                    <a href="/registrants/adjudication/{{ $eventversion->id }}" class="text-black">
+                                        Cancel
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         @endif
@@ -129,13 +130,14 @@
                                     Now adjudicating: <b>{{ $auditioner->id }}</b>: {{ strtoupper($auditioner->instrumentations->first()->abbr) }}
                                 </div>
                             @endif
-
+<!-- {{--
                             @if(config('app.url') === 'http://localhost')
                                 <form method="post" action="{{ route('registrants.adjudication.update', ['registrant' => $auditioner->id]) }}" >
                             @else
                                 <form method="post" action="https://sea-lion-app-uichk.ondigitalocean.app/registrants/adjudication/registrant/update/{{ $auditioner->id }}" >
                             @endif
-
+--}} -->
+                            <form method="post" action="{{ route('registrants.adjudication.update', ['registrant' => $auditioner->id]) }}" >
                                 @csrf
 
                                 <x-adjudication.scoresheets.index
