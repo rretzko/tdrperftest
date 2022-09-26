@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'https://https://sea-lion-app-uichk.ondigitalocean.app/login/tdr/update'
     ];
 }
