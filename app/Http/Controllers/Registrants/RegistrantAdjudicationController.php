@@ -79,7 +79,6 @@ class RegistrantAdjudicationController extends Controller
     {
         $auditioner = \App\Models\Registrant::find($id);
 
-
         $eventversion = Eventversion::find(\App\Models\Userconfig::getValue('eventversion', auth()->id()));
 
         $useradjudicator = \App\Models\Adjudicator::with('user','user.person')
@@ -99,7 +98,6 @@ class RegistrantAdjudicationController extends Controller
         $room = \App\Models\Room::with([
            'adjudicators',
            'filecontenttypes.scoringcomponents' ,
-
            ])
             ->where('id', $useradjudicator->room_id)
             ->first();

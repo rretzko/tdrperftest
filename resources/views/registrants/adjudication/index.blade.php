@@ -165,7 +165,7 @@
 
         {{-- ADJUDICATOR RESULTS TABLE --}}
         <div id="adjudicators-table" style="">
-            @if($auditioner)
+            @if($auditioner) {{-- $auditioner === Registrant --}}
                 <style>
                     td,th{border: 1px solid black; padding:0 .25rem;}
                 </style>
